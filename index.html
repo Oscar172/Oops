@@ -1,18 +1,162 @@
- <!doctype html>
+<!DOCTYPE html>
   <html lang="sv">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mina meddelanden</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DLC Giveaway</title>
     <style>
-      body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
-      .msg { background: #f3f3f3; padding: 12px; margin: 12px 0; border-radius: 8px; }
+      :root {
+        --bg1: #0f172a;
+        --bg2: #1e293b;
+        --card: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.18);
+        --text: #f8fafc;
+        --muted: #cbd5e1;
+        --accent: #22c55e;
+        --accent-hover: #16a34a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, #1d4ed8 0%, transparent 30%),
+          radial-gradient(circle at top right, #7c3aed 0%, transparent 30%),
+          linear-gradient(135deg, var(--bg1), var(--bg2));
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1000px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+        margin-bottom: 12px;
+      }
+
+      p {
+        color: var(--muted);
+        margin-bottom: 32px;
+      }
+
+      .gif-box {
+        margin: 0 auto 32px;
+        max-width: 420px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      .gif-box img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--card);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+      }
+
+      .code {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px dashed rgba(255, 255, 255, 0.25);
+        border-radius: 14px;
+        padding: 18px;
+        margin: 16px 0;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        font-weight: bold;
+        word-break: break-word;
+      }
+
+      button {
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      button:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+      }
+
+      .footer {
+        margin-top: 28px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
     </style>
   </head>
   <body>
-    <h1>Mina meddelanden</h1>
-    <div class="msg">Hej och välkommen.</div>
-    <div class="msg">Det här är mitt andra meddelande.</div>
-    <div class="msg">Här kan jag lägga upp vad jag vill visa.</div>
+    <div class="container">
+      <h1>DLC Giveaway</h1>
+      <p>Två DLC-koder. Först till kvarn.</p>
+
+      <div class="gif-box">
+        <img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="Gaming GIF">
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h2>Kod 1</h2>
+          <div class="code" id="code1">DIN-FORSTA-KOD-HAR</div>
+          <button onclick="copyCode('code1')">Kopiera kod 1</button>
+        </div>
+
+        <div class="card">
+          <h2>Kod 2</h2>
+          <div class="code" id="code2">DIN-ANDRA-KOD-HAR</div>
+          <button onclick="copyCode('code2')">Kopiera kod 2</button>
+        </div>
+      </div>
+
+      <div class="footer">
+        Lycka till och enjoy.
+      </div>
+    </div>
+
+    <script>
+      function copyCode(id) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Koden kopierades: " + text);
+        });
+      }
+    </script>
   </body>
   </html>
